@@ -49,18 +49,6 @@ public class Viewer extends JPanel {
         String texture = gameworld.getPlayer().getTexture();
 
         drawPlayer(x, y, width, height, texture, g);
-
-        // Draw bullets
-        gameworld.getBullets().forEach(temp -> {
-            drawBullet(
-                    (int) temp.getCentre().getX(),
-                    (int) temp.getCentre().getY(),
-                    (int) temp.getWidth(),
-                    (int) temp.getHeight(),
-                    temp.getTexture(),
-                    g
-            );
-        });
     }
 
     private void drawEnemies(int x, int y, int width, int height, String texture, Graphics g) {

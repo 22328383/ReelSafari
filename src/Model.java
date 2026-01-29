@@ -7,13 +7,10 @@ import util.Point3f;
 import util.Vector3f;
 
 public class Model {
-
+	private int Money = 0;
+	private boolean isFishing = false;
     private GameObject player;
     private Controller controller = Controller.getInstance();
-    private CopyOnWriteArrayList<GameObject> fishList =
-            new CopyOnWriteArrayList<GameObject>();
-    private CopyOnWriteArrayList<GameObject> bulletList =
-            new CopyOnWriteArrayList<GameObject>();
     private int score = 0;
 
     public Model() {
@@ -45,52 +42,44 @@ public class Model {
     private void playerLogic() {
         // Check for movement and if you fired a bullet
 
-        if (controller.isKeyAPressed()) {
+        if(controller.isKeyAPressed()) {
             player.getCentre().ApplyVector(new Vector3f(-2, 0, 0));
         }
 
-        if (controller.isKeyDPressed()) {
+        if(controller.isKeyDPressed()) {
             player.getCentre().ApplyVector(new Vector3f(2, 0, 0));
         }
 
-        if (controller.isKeyWPressed()) {
+        if(controller.isKeyWPressed()) {
             player.getCentre().ApplyVector(new Vector3f(0, 2, 0));
         }
 
-        if (controller.isKeySPressed()) {
+        if(controller.isKeySPressed()) {
             player.getCentre().ApplyVector(new Vector3f(0, -2, 0));
         }
-
-        if (controller.isKeySpacePressed()) {
-            createBullet();
-            controller.setKeySpacePressed(false);
+        if(controller.isKeySpacePressed()) {
+        	castRod();
+        	Controller.getInstance().setKeySpacePressed(false);
         }
-    }
 
-    private void createBullet() {
-        bulletList.add(
-                new GameObject(
-                        "res/Bullet.png",
-                        32,
-                        64,
-                        new Point3f(
-                                player.getCentre().getX(),
-                                player.getCentre().getY(),
-                                0.0f
-                        )
-                )
-        );
     }
 
     public GameObject getPlayer() {
         return player;
     }
 
-    public CopyOnWriteArrayList<GameObject> getBullets() {
-        return bulletList;
-    }
-
     public int getScore() {
-        return score;
+        return Money;
+    }
+    
+    private void castRod() {
+        if(!isFishing) {
+            isFishing = true;
+            System.out.println("Rod cast!");
+        } else {
+            isFishing = false;
+            System.out.println("Reeled in!");
+            Money = Money + 10;
+        }
     }
 }

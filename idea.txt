@@ -1,0 +1,8 @@
+the main game loop is going to the water and clicking on the water to cast your rod.
+then letting go of the left click once a fish is caught. then depending on your
+rod and other factors we can add later (weather, bait type, items etc etc) we rng
+a random fish/loot fished up and generate a weight associated with it. items and fish
+have different rarity so it should feel like gambiling.
+based on the fish you caught, the price of the fish is determined by the weight and rarity of the item.
+with the money you can buy better gear to increase odds or asthetics. the game ends when you collect
+enough money to "prestige" permanently making your odds better but reseting all progress.
